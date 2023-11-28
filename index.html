@@ -1,0 +1,191 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMP 3612 Assignment 2</title>
+    <link rel="stylesheet" href="style.css">
+    <!--Main Project File-->
+    <script src="assign2.js"></script>
+    <!--Chart.js script-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!--Bulma CSS link-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body class="has-background-grey-darker">
+    <header class="navbar is-dark has-shadow">
+        <div class="navbar-brand p-4" id="logo" onclick="homePageSwitch()">
+            <img src="Logos/Logo.png" alt="logo" id="siteLogo">
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item mx-4" onclick="searchPageSwitch()">
+                    <img src="Logos/Search.png" alt="navSearch">
+                    <p class="has-text-primary">Search</p>
+                </a>
+                <a class="navbar-item mx-4" onclick="playlistPageSwitch()">
+                    <img src="Logos/Playlist.png" alt="navPlaylist">
+                    <p class="has-text-primary">Playlist</p>
+                </a>
+                <a class="navbar-item mx-4" onmouseenter="creditMouseEnter()">
+                    <img src="Logos/Author.png" alt="navCredit">
+                    <div class="creditToolTip has-text-primary">
+                        Credit
+                        <div class="toolTip" id="creditToolTip">
+                            <table class="table has-background-dark has-text-primary">
+                                <tr>
+                                    <td>Morgan Payette</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.google.ca" class="has-text-primary is-underlined">Github</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </header>
+    <section class="page" id="pageHome">
+        <div class="homeMenu has-background-grey-dark" id="homeLeft">
+            <p class="homeMenuLabel title has-text-primary">Top Genres</p>
+            <progress class="homeProgress progress is-primary"></progress>
+            <ul class="has-text-light" id="homeGenresList">
+
+            </ul>
+        </div>
+        <div class="homeMenu has-background-grey-dark" id="homeMid">
+            <p class="homeMenuLabel title has-text-primary">Top Artists</p>
+            <progress class="homeProgress progress is-primary"></progress>
+            <ul class="has-text-light" id="homeArtistsList">
+
+            </ul>
+        </div>
+        <div class="homeMenu has-background-grey-dark" id="homeRight">
+            <p class="homeMenuLabel title has-text-primary">Most Popular Songs</p>
+            <progress class="homeProgress progress is-primary"></progress>
+            <ul class="has-text-light" id="homeSongsList">
+
+            </ul>
+        </div>
+    </section>
+    <section class="page" id="pageSearch">
+        <div id="searchLeft" class="">
+            <div id="searchChoices" class="searchSection has-background-grey-dark has-text-light">
+                <div class="searchSelection box has-background-grey-darker has-text-primary p-2 m-1">
+                    <input type="radio" class="searchRadio" id="radioTitle" name="searchRadio">
+                    <p class="searchCategory has-text-centered">Title</p>
+                    <input type="text" id="titleInput" class="searchDropdown" placeholder="enter a word">
+                </div>
+                <div class="searchSelection box has-background-grey-darker has-text-primary p-2 m-1">
+                    <input type="radio" class="searchRadio" id="radioArtist" name="searchRadio">
+                    <p class="searchCategory has-text-centered">Artist</p>
+                    <select name="artistDropdown" id="artistInput" class="searchDropdown"></select>
+                </div>
+                <div class="searchSelection box has-background-grey-darker has-text-primary p-2 m-1">
+                    <input type="radio" class="searchRadio" id="radioGenre" name="searchRadio">
+                    <p class="searchCategory has-text-centered">Genre</p>
+                    <select name="genreDropdown" id="genreInput" class="searchDropdown"></select>
+                </div>
+            </div>
+            <div id="searchButtons" class="searchSection has-background-grey-dark">
+                <div class="searchButton button is-primary" id="Filter" onclick="filterSelection()">
+                    Filter
+                </div>
+                <div id="searchButtonDivider"></div>
+                <div class="searchButton button is-primary m-2" id="Clear" onclick="clearSelection()">
+                    Clear
+                </div>
+            </div>
+            <div id="searchDescription" class="searchSection has-background-grey-dark has-text-light">
+                <p>Select the catgory you would like to search by. Press Filter to start your search, and clear to start from scratch.</p>
+                <p>You can add a song to your playlist with the ADD button.</p>
+                <p>Clicking on a song brings you to the single song analytics.</p>
+                <progress class="searchProgress progress is-primary"></progress>
+            </div>
+        </div>
+        <div id="searchRight" class="has-background-grey-dark my-4">
+            <table class="table has-background-dark has-text-light is-fullwidth">
+                <thead id="browseLabels">
+                    <tr>
+                        <th class="has-text-primary is-size-4 browseLabel">
+                            <span data-sortmode="Title">Title</span>
+                            <img src="Logos/Arrow_Down.png" alt="titleArrow" class="categoryArrows is-hidden" id="titleArrow" data-sortmode="Title">
+                        </th>
+                        <th class="has-text-primary is-size-4 browseLabel">
+                            <span data-sortmode="Artist">Artist</span>
+                            <img src="Logos/Arrow_Down.png" alt="titleArrow" class="categoryArrows is-hidden" id="artistArrow" data-sortmode="Artist">
+                        </th>
+                        <th class="has-text-primary is-size-4 browseLabel">
+                            <span data-sortmode="Year">Year</span>
+                            <img src="Logos/Arrow_Down.png" alt="titleArrow" class="categoryArrows is-hidden" id="yearArrow" data-sortmode="Year">
+                        </th>
+                        <th class="has-text-primary is-size-4 browseLabel">
+                            <span data-sortmode="Genre">Genre</span>
+                            <img src="Logos/Arrow_Down.png" alt="titleArrow" class="categoryArrows is-hidden" id="genreArrow" data-sortmode="Genre">
+                        </th>
+                        <th class="has-text-primary is-size-4"></th>
+                    </tr>
+                </thead>
+                <tbody id="browseList">
+
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+    <section class="page" id="pagePlaylist">
+        <div class="box has-background-grey-dark has-text-primary" id="playlistTitleBar">
+            <div class="is-size-3" id="playlistTitle">Playlist Details</div>
+            <ul id="playistStatistics">
+                <li class="playlistStatistic" id="songCount">Option 1</li>
+                <li class="playlistStatistic" id="avgPopularity">Option 2</li>
+            </ul>
+            <div class="button is-primary" id="playlistClear" onclick="clearPlaylist()">Clear Playlist</div>
+        </div>
+        <div id="playlistTableParent">
+            <progress class="homeProgress progress is-primary"></progress>
+            <table id="playlistTable" class="table has-background-dark has-text-light is-fullwidth">
+                <thead id="playListHeader">
+                    <tr>
+                        <th class="has-text-primary is-size-4">Title</th>
+                        <th class="has-text-primary is-size-4">Artist</th>
+                        <th class="has-text-primary is-size-4">Year</th>
+                        <th class="has-text-primary is-size-4">Genre</th>
+                        <th class="has-text-primary is-size-4">Popularity</th>
+                        <th class="has-text-primary is-size-4"></th>
+                    </tr>
+                </thead>
+                <tbody id="playListEntries">
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <section class="page" id="pageSingleSong">
+        <div class="singleSongArea box has-background-grey-dark has-text-light" id="singleSongLeft">
+            <strong class="is-size-3 has-text-primary">Song Information</strong>
+            <div id="singleSongArtistInformation">
+
+            </div>
+            <strong class="has-text-primary is-size-4">Analysis Data</strong>
+            <progress class="homeProgress progress is-primary"></progress>
+            <table id="singleSongTable" class="table is-fullwidth has-background-grey-dark has-text-light">
+                <tbody id="singleSongDataList">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="singleSongArea" id="singleSongRight">
+            <canvas id="songRadarChart" class="has-background-grey-dark box">
+
+            </canvas>
+        </div>
+    </section>
+    <!--<footer class="has-text-primary has-background-grey-dark has-text-centered is-size-4" id="messageArea">-->
+    <footer class="has-background-grey-dark" id="messageContainer">
+        <div id="messageArea" class="has-text-light has-text-centered m-3"></div>
+    </footer>
+</body>
+</html>

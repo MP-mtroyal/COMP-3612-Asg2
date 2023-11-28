@@ -1,0 +1,161 @@
+body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.box{margin: 10;}
+.page{
+    margin-left: 10;
+    margin-right: 10;
+}
+#siteLogo{max-height: 75px;}
+
+section{
+    display: flex;
+    flex: 1;
+}
+footer{
+    height: 0vh;
+    transition: height 1s, opacity 1s;
+    border-radius: 10px;
+    min-width: 400px;
+    margin: auto;
+    margin-bottom: 10px;
+    opacity: 0;
+}
+
+
+/* Home Page ----------------------------------------------*/
+#pageHome{display: flex;}
+.homeMenu{
+    flex: 3;
+    margin: 20;
+    padding: 20;
+    border-radius: 15px;
+}
+#homeRight{flex: 3;}
+.homeItem{
+    padding: 5;
+    border-radius: 5px;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: hsl(0, 0%, 17%);
+}
+.homeItem:hover{background-color: hsl(0, 0%, 17%);}
+
+/* -- Playlist Page--------------------------------------------*/
+#pagePlaylist{
+    display: flex;
+    flex-direction: column;
+}
+#playlistTitleBar{display: flex;}
+#playlistTitle{flex: 1;}
+#playistStatistics{flex: 1;}
+#playlistClear{flex: 1;}
+.playlistItem:hover{background-color: hsl(0, 0%, 29%);}
+#playlistEntries{
+    height: 55vh;
+    overflow-y: scroll;
+}
+#playlistTableParent{
+    height: 55vh;
+    overflow-y: scroll;
+}
+
+/*----Single song -----------------------------------------*/
+#pageSingleSong{
+    display: flex;
+    height: 55vh;
+}
+#singleSongLeft{
+    flex: 7;
+    margin-right: 10;
+}
+#singleSongRight{
+    flex: 10;
+    height: 70vh;
+}
+.songAnalyticsRow{display: flex;}
+.songAnalyticsLabel{flex:1;}
+.songAnalyticsValue{flex:1;}
+.songAnalyticsDivider{
+    height: 3px;
+}
+/* Searh page    ------------------------------------------*/
+#searchRight{
+    flex: 3;
+    height: 55vh;
+    overflow-y: scroll;
+}
+#searchLeft{
+    flex: 1;
+    margin-right: 10;
+    display: flex;
+    flex-direction: row;
+}
+.searchSection{
+    margin: 10;
+    border-radius: 15px;
+    padding: 5;
+}
+#searchButtons{
+    display: flex;
+    flex-direction: column;
+}
+.searchButton{
+    flex: 2;
+    margin: 5;
+}
+#searchButtonDivider{flex:1;}
+#searchChoices{flex:7;}
+#searchButtons{flex:1;}
+#searchDescription{flex:7;}
+.categoryArrows{height: 15px;}
+.browseLabel:hover{background-color: hsl(0, 0%, 29%);}
+div.searchSelection{display: flex;}
+div#searchCompleteButtons{
+    display: flex;
+    margin-top: 5;
+}
+.searchDropdown{
+    flex: 3;
+    margin: 5;
+    max-width: 200px;
+}
+.searchCategory{flex:1;}
+#searchClear{
+    flex: 1;
+    margin: 5;
+    padding: 5;
+}
+#searchFilter{
+    flex: 1;
+    margin: 5;
+    padding: 5;
+}
+.searchItem:hover{background-color: hsl(0, 0%, 29%);}
+
+/*--------------Tool Tip ----------------------------------*/
+/* Attribution: https://www.w3schools.com/css/css_tooltip.asp */
+
+.toolTip{
+    position: relative;
+    display: inline-block;
+}
+
+#creditToolTip {
+    visibility: hidden;
+    width: 240px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    margin-left: -80px;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
